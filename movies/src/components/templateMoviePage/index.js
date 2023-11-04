@@ -3,7 +3,9 @@ import MovieHeader from "../headerMovie";
 import Grid from "@mui/material/Grid";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
+import MovieCredits from "../movieCredits";
 import { getMovieImages } from "../../api/tmdb-api";
+import { getMovieCredits } from "../../api/tmdb-api";
 import { useQuery } from "react-query";
 import Spinner from '../spinner'
 
@@ -13,14 +15,26 @@ const TemplateMoviePage = ({ movie, children }) => {
         getMovieImages
       );
     
-      if (isLoading) {
-        return <Spinner />;
-      }
+      const { data: credits, error: creditError, isLoading: creditIsLoading, isError: creditIsError } = useQuery(
+        ["credit", { id: movie.id}],
+        getMovieCredits
+    );
     
-      if (isError) {
-        return <h1>{error.message}</h1>;
-      }
-      const images = data.posters
+    
+    if (isLoading || creditIsLoading) {
+      return <Spinner />;
+    }
+  
+    if (isError || creditIsError) {
+      return <h1>{error || creditError}</h1>;
+    }
+  
+    const images = data.posters.slice(0, 1);
+    //const castNames = credits.cast.map((castMember) => castMember.name);
+   // console.log(castNames)// You might need to adjust this based on the response structure
+    
+    console.log(credits)
+    const reducedCast = credits.cast.splice(0, 16)
 
   return (
     <>
@@ -34,9 +48,9 @@ const TemplateMoviePage = ({ movie, children }) => {
             justifyContent: "space-around",
           }}>
             <ImageList 
-                cols={1}>
+                cols={1} >
                 {images.map((image) => (
-                    <ImageListItem key={image.file_path} cols={1}>
+                    <ImageListItem key={image.file_path} cols={1} >
                     <img
                         src={`https://image.tmdb.org/t/p/w500/${image.file_path}`}
                         alt={image.poster_path}
@@ -51,6 +65,7 @@ const TemplateMoviePage = ({ movie, children }) => {
           {children}
         </Grid>
       </Grid>
+      <MovieCredits cast={reducedCast} />
     </>
   );
 };
