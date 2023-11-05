@@ -11,10 +11,10 @@ const ActorDetails = ({ actor }) => {
       <h3>Known For:</h3>
       <div style={{ display: "flex", flexWrap: "wrap" }}>
         {actor.known_for.map((movie) => (
-          <Card key={movie.id} style={{ maxWidth: 200, margin: 10 }}>
+          <Card key={movie.id} style={{ maxWidth: 400, margin: 10 }}>
             <CardMedia
               component="img"
-              height="200"
+              height="500"
               image={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
               alt={movie.original_title}
             />
