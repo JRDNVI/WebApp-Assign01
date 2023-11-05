@@ -79,6 +79,24 @@ export const getMovies = () => {
    });
   };
 
+  export const getFullActorProfile = (args) => {
+    const [, idPart] = args.queryKey;
+    const { id } = idPart
+
+    return fetch(
+      `https://api.themoviedb.org/3/person/${id}?api_key=${process.env.REACT_APP_TMDB_KEY}&append_to_response=movie_credits`
+    ).then((response) => {
+      if (!response.ok) {
+        throw new Error(response.json().message);
+      }
+      console.log(response.json);
+      return response.json();
+    })
+    .catch((error) => {
+      throw error
+   });
+  };
+
   export const getGenres = async () => {
     return fetch(
       "https://api.themoviedb.org/3/genre/movie/list?api_key=" +

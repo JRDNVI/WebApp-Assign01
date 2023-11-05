@@ -2,6 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom"; // Import useParams to access URL parameters
 import { getActorDetails } from "../api/tmdb-api";
 import { useQuery } from 'react-query';
+import { getFullActorProfile } from "../api/tmdb-api";
 import Spinner from '../components/spinner';
 import ActorDetails from "../components/actorDetails";
 
@@ -22,9 +23,12 @@ const ActorDetailsPage = () => {
   if (isError) {
     return <h1>{error.message}</h1>
   }
-  console.log(data.results)
+
+  console.log(data.results[0].id)
+  console.log(data.results[0])
+  
   return (
-    <ActorDetails actor={data.results[0]} />
+    <ActorDetails actor={data.results[0].id} />
   );
 };
 

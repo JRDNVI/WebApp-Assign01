@@ -15,6 +15,8 @@ Name: [your name]
 + etc
 + etc
 https://api.themoviedb.org/3/search/person?query=Josh%Hutcherson&api_key=4fa4dc0ab858752c9e3d2d19b0b07fac
+
+https://api.themoviedb.org/3/person/6383?api_key=4fa4dc0ab858752c9e3d2d19b0b07fac&append_to_response=movie_credits
 ## Setup requirements.
 
 [ Outline any non-standard setup steps necessary to run your app locally after cloning the repo.]
