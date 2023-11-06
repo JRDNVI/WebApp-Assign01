@@ -30,10 +30,6 @@ const TemplateMoviePage = ({ movie, children }) => {
     }
   
     const images = data.posters.slice(0, 1);
-    //const castNames = credits.cast.map((castMember) => castMember.name);
-   // console.log(castNames)// You might need to adjust this based on the response structure
-    
-    console.log(credits)
     const reducedCast = credits.cast.splice(0, 16)
 
   return (

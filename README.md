@@ -14,30 +14,27 @@ Name: [your name]
 + Feature 3
 + etc
 + etc
-https://api.themoviedb.org/3/search/person?query=Josh%Hutcherson&api_key=4fa4dc0ab858752c9e3d2d19b0b07fac
-
-https://api.themoviedb.org/3/person/6383?api_key=4fa4dc0ab858752c9e3d2d19b0b07fac&append_to_response=movie_credits
 ## Setup requirements.
 
 [ Outline any non-standard setup steps necessary to run your app locally after cloning the repo.]
 
 ## API endpoints.
+Static Endpoints
++ Latest Movie - movie/latest
++ Popular Movies - movie/top_rated
++ Movies in Theatres - movie/now_playing
 
-[ List the __additional__ TMDB endpoints used, giving the description and pathname for each one.] 
-
-e.g.
-+ Discover list of movies - discover/movie
+Parameterised Endpoints
 + Movie details - movie/:id
-+ Movie genres = /genre/movie/list
++ Actor Details - person?query=name
++ Full Actor Profile & Credited Movies - person/:id&append_to_response=movie_credits
+
 
 ## Routing.
++ /movies/topRated - Displays top rated movies
++ /actor/:name - Displays an actors profile and movies they have been in.
++ /movies/playingNow - Displays movies that are in threatres
 
-[ List the __new routes__ supported by your app and state the associated page.]
-
-+ /blogs - displays all published blogs.
-+ /blogs/:id - displays a particular blog.
-+ /blogs/:id/comments - detail view of a particular blog and its comments.
-+ etc.
 
 [If relevant, state what aspects of your app are protected (i.e. require authentication) and what is public.]
 
