@@ -9,7 +9,7 @@ import { useQuery } from "react-query";
 
 const ActorDetails = ({ actor }) => {
   const { data, error, isLoading, isError } = useQuery(
-    ["actorFull", { id: actor }], // Use 'name' as the parameter for the query
+    ["actorFull", { id: actor }], 
     getFullActorProfile
   );
 
