@@ -36,7 +36,7 @@ export default function FilterMoviesCard(props) {
   }
 
   const handleSortChange = (e) => {
-    props.onUserInput("sort", e.target.value); // Notify the parent component of the selected sorting option
+    props.onUserInput("sort", e.target.value);
   };
 
   return (
@@ -61,6 +61,15 @@ export default function FilterMoviesCard(props) {
           value={props.titleFilter}
           onChange={(e) => props.onUserInput("name", e.target.value)}
         />
+        <TextField
+          sx={{ ...formControl}}
+          id="voteCountSearch"
+          label="Filter by Vote Count"
+          type="search"
+
+          value={props.voteCount}
+          onChange={(e) => props.onUserInput("vote", e.target.value)}
+          />
         <FormControl sx={{ ...formControl }}>
           <InputLabel id="genre-label">Genre</InputLabel>
           <Select

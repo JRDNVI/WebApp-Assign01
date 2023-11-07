@@ -8,7 +8,7 @@ function MovieListPageTemplate({ movies, title, action }) {
   const [nameFilter, setNameFilter] = useState("");
   const [genreFilter, setGenreFilter] = useState("0");
   const [selectedSortOption, setSelectedSortOption] = useState("");
-  const [voteCount, setVoteCount] = useState("0")
+  const [voteCount, setVoteCount] = useState("0");
   const genreId = Number(genreFilter);
 
   let displayedMovies = movies
@@ -19,16 +19,12 @@ function MovieListPageTemplate({ movies, title, action }) {
       return genreId > 0 ? m.genre_ids.includes(genreId) : true;
     })
     .filter((m) => {
-      return m.vote_average >= parseInt(voteCount);
+      return voteCount !== "" ? m.vote_average >= parseInt(voteCount) : true;
     });
 
-    if(selectedSortOption === "release_date") {
-      displayedMovies.sort((a, b) => new Date(b.release_date) - new Date(a.release_date));
-    }
+    if(selectedSortOption === "release_date") displayedMovies.sort((a, b) => new Date(b.release_date) - new Date(a.release_date));
 
-    if(selectedSortOption === "vote_average") {
-      displayedMovies.sort((a, b) => b.vote_average - a.vote_average); 
-    }
+    if(selectedSortOption === "vote_average") displayedMovies.sort((a, b) => b.vote_average - a.vote_average); 
     
     console.log(displayedMovies)
 
@@ -56,6 +52,7 @@ function MovieListPageTemplate({ movies, title, action }) {
           <FilterCard
             onUserInput={handleChange}
             titleFilter={nameFilter}
+            voteFilter={voteCount}
             genreFilter={genreFilter}
             sortOption={selectedSortOption}
           />
