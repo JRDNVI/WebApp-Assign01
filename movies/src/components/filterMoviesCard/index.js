@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
@@ -9,20 +9,18 @@ import TextField from "@mui/material/TextField";
 import SearchIcon from "@mui/icons-material/Search";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import img from '../../images/pexels-dziana-hasanbekava-5480827.jpg'
+import img from "../../images/pexels-dziana-hasanbekava-5480827.jpg";
 import { getGenres } from "../../api/tmdb-api";
 import { useQuery } from "react-query";
-import Spinner from '../spinner'
+import Spinner from "../spinner";
 
-const formControl =
-{
+const formControl = {
   margin: 1,
   minWidth: 220,
-  backgroundColor: "rgb(255, 255, 255)"
+  backgroundColor: "rgb(255, 255, 255)",
 };
 
 export default function FilterMoviesCard(props) {
-
   const { data, error, isLoading, isError } = useQuery("genres", getGenres);
 
   if (isLoading) {
@@ -33,30 +31,22 @@ export default function FilterMoviesCard(props) {
     return <h1>{error.message}</h1>;
   }
   const genres = data.genres;
-  if (genres[0].name !== "All"){
+  if (genres[0].name !== "All") {
     genres.unshift({ id: "0", name: "All" });
   }
 
-  const handleChange = (e, type, value) => {
-    e.preventDefault();
-    props.onUserInput(type, value); // NEW
-  };
-
-  const handleTextChange = (e, props) => {
-    handleChange(e, "name", e.target.value);
-  };
-
-  const handleGenreChange = (e) => {
-    handleChange(e, "genre", e.target.value);
+  const handleSortChange = (e) => {
+    props.onUserInput("sort", e.target.value); // Notify the parent component of the selected sorting option
   };
 
   return (
     <Card
       sx={{
         maxWidth: 345,
-        backgroundColor: "rgb(204, 204, 0)"
+        backgroundColor: "rgb(204, 204, 0)",
       }}
-      variant="outlined">
+      variant="outlined"
+    >
       <CardContent>
         <Typography variant="h5" component="h1">
           <SearchIcon fontSize="large" />
@@ -69,7 +59,7 @@ export default function FilterMoviesCard(props) {
           type="search"
           variant="filled"
           value={props.titleFilter}
-          onChange={handleTextChange}
+          onChange={(e) => props.onUserInput("name", e.target.value)}
         />
         <FormControl sx={{ ...formControl }}>
           <InputLabel id="genre-label">Genre</InputLabel>
@@ -78,23 +68,31 @@ export default function FilterMoviesCard(props) {
             id="genre-select"
             defaultValue=""
             value={props.genreFilter}
-            onChange={handleGenreChange}
+            onChange={(e) => props.onUserInput("genre", e.target.value)}
           >
-            {genres.map((genre) => {
-              return (
-                <MenuItem key={genre.id} value={genre.id}>
-                  {genre.name}
-                </MenuItem>
-              );
-            })}
+            {genres.map((genre) => (
+              <MenuItem key={genre.id} value={genre.id}>
+                {genre.name}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+        <FormControl sx={{ ...formControl }}>
+          <InputLabel id="sort-label">Sort By</InputLabel>
+          <Select
+            labelId="sort-label"
+            id="sort-select"
+            value={props.sortOption}
+            onChange={handleSortChange}
+          >
+            <MenuItem value="none">None</MenuItem>
+            <MenuItem value="vote_average">Vote Average</MenuItem>
+            <MenuItem value="release_date">Release Date</MenuItem>
+            {/* Add more sorting options as needed */}
           </Select>
         </FormControl>
       </CardContent>
-      <CardMedia
-        sx={{ height: 300 }}
-        image={img}
-        title="Filter"
-      />
+      <CardMedia sx={{ height: 300 }} image={img} title="Filter" />
       <CardContent>
         <Typography variant="h5" component="h1">
           <SearchIcon fontSize="large" />

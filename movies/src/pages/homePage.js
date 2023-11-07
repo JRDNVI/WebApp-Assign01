@@ -10,7 +10,7 @@ import LatestTemplete from '../components/latestMovie';
 const HomePage = (props) => {
 
   const {  data, error, isLoading, isError }  = useQuery('discover', getMovies)
-  const { data:latestMovie, error: latestError, isLoading: latestIsLoading, isError: latestIsError  } = useQuery('latest', getLatestMovie )
+  const { data: latestMovie, error: latestError, isLoading: latestIsLoading, isError: latestIsError  } = useQuery('latest', getLatestMovie )
 
   if (isLoading || latestIsLoading) {
     return <Spinner />
@@ -29,7 +29,7 @@ const HomePage = (props) => {
   return (
     <>
     <div>
-    <LatestTemplete latest={latestMovie}/>
+      <LatestTemplete latest={latestMovie}/>
     </div>
     <PageTemplate
       title="Discover Movies"
