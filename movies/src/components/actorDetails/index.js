@@ -6,6 +6,7 @@ import Typography from "@mui/material/Typography";
 import { getFullActorProfile } from "../../api/tmdb-api";
 import  Spinner from "../spinner"
 import { useQuery } from "react-query";
+import PageTemplate from "../templateMovieListPage"
 
 const ActorDetails = ({ actor }) => {
   const { data, error, isLoading, isError } = useQuery(
@@ -23,6 +24,7 @@ const ActorDetails = ({ actor }) => {
 
   console.log(data)
   return (
+    <>
     <div>
       <Card style={{ maxWidth: 300, margin: 10 }}>
         <CardMedia
@@ -48,6 +50,14 @@ const ActorDetails = ({ actor }) => {
         </Card>
         <p>{data.biography}</p>
       </div>
+      <PageTemplate
+        title={data.name}
+        movies={data.movie_credits.cast}
+        action={(movie) => {
+          return null;
+      }}
+    />
+      </>
   );
 };
 
