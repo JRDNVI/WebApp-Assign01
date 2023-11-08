@@ -19,7 +19,7 @@ function MovieListPageTemplate({ movies, title, action }) {
       return genreId > 0 ? m.genre_ids.includes(genreId) : true;
     })
     .filter((m) => {
-      return voteCount !== "" ? m.vote_average >= parseInt(voteCount) : true;
+      return voteCount !== "" ? m.vote_average >= parseInt(voteCount): true;
     });
 
     if(selectedSortOption === "release_date") displayedMovies.sort((a, b) => new Date(b.release_date) - new Date(a.release_date));

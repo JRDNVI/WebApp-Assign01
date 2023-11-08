@@ -28,7 +28,7 @@ const ActorDetailsPage = () => {
   console.log(data.results[0])
   
   return (
-    <ActorDetails actor={data.results[0].id} />
+    <ActorDetails actor={data.results[0].id} actorBasicInfo={data.results[0]} />
   );
 };
 
