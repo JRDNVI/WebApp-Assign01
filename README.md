@@ -7,16 +7,20 @@ Name: [your name]
 [A brief statement on the content of this repository.]
 
 ### Features.
-[ A bullet-point list of the __new features__ you added to the Movies Fan app (and any modifications to existing features) .]
- 
-+ Feature 1
-+ Feature 2
-+ Feature 3
-+ etc
-+ etc
-## Setup requirements.
++ Sorting movies by vote count or release date has been added.
 
-[ Outline any non-standard setup steps necessary to run your app locally after cloning the repo.]
++ Added another filter option by vote average. If a mvoie is below the user 
+  specfied amount it will be removed from the list of movies.
+
++ Added firebase email and password authentication. 
+  - The users account is being passed to the rest of the app.
+  - There is a sign in and sign up option. 
+  - The current user can be seen at the top left of the site header
+
+
+## Setup requirements.
+npm install
+npm install firebase
 
 ## API endpoints.
 Static Endpoints
@@ -29,14 +33,11 @@ Parameterised Endpoints
 + Actor Details - person?query=name
 + Full Actor Profile & Credited Movies - person/:id&append_to_response=movie_credits
 
-
 ## Routing.
 + /movies/topRated - Displays top rated movies
 + /actor/:name - Displays an actors profile and movies they have been in.
 + /movies/playingNow - Displays movies that are in threatres
-
-
-[If relevant, state what aspects of your app are protected (i.e. require authentication) and what is public.]
++ /movies/mustWatch - Shows must watch movies
 
 ## Independent learning (If relevant).
 

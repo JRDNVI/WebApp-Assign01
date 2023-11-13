@@ -16,6 +16,7 @@ import TopRatedPage from "./pages/topRatedMoviePage"
 import InTheatresPage from "./pages/InTheatresPage";
 import AuthOptionsPage from "./pages/authOptionPage";
 import UserProvider from "./components/auth/UserProvider";
+import MustWatchMoviesPage from "./pages/mustWatchMoviesPage";
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
@@ -69,6 +70,7 @@ const App = () => {
         <MoviesContextProvider>
         <Routes>
           <Route path="/movies/favorites" element={<FavoriteMoviesPage />} />
+          <Route path="/movies/mustWatch" element={<MustWatchMoviesPage />} />
           <Route path="/movies/upcoming" element={<UpcomingMoviesPage />} />
           <Route path="/movies/topRated" element={<TopRatedPage />} />
           <Route path="/movies/playingNow" element={<InTheatresPage />} />
