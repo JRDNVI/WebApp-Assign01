@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { getMovies } from "../api/tmdb-api";
 import { getLatestMovie } from "../api/tmdb-api";
 import PageTemplate from '../components/templateMovieListPage';
@@ -6,9 +6,11 @@ import { useQuery } from 'react-query';
 import Spinner from '../components/spinner';
 import AddToFavoritesIcon from '../components/cardIcons/addToFavorites';
 import LatestTemplete from '../components/latestMovie';
+import UserContext from "../contexts/userContext";
+
 
 const HomePage = (props) => {
-
+  const { currentUser } = useContext(UserContext);
   const {  data, error, isLoading, isError }  = useQuery('discover', getMovies)
   const { data: latestMovie, error: latestError, isLoading: latestIsLoading, isError: latestIsError  } = useQuery('latest', getLatestMovie )
 
@@ -25,6 +27,8 @@ const HomePage = (props) => {
   const favorites = movies.filter(m => m.favorite)
   localStorage.setItem('favorites', JSON.stringify(favorites))
   const addToFavorites = (movieId) => true 
+  
+
 
   return (
     <>

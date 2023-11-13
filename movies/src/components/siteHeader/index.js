@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
@@ -11,10 +11,29 @@ import { useNavigate } from "react-router-dom";
 import { styled } from '@mui/material/styles';
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import UserContext from "../../contexts/userContext";
+import { getAuth, signOut } from 'firebase/auth';
 
 const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
 
-const SiteHeader = ({ history }) => {
+
+const SiteHeader = () => {
+  const auth = getAuth();
+  const { currentUser } = useContext(UserContext);
+  console.log("Hello", JSON.stringify(currentUser));
+  
+  const handleSignIn = () => {
+    navigate("/authPage/")
+  };
+  
+  const handleSignOut = async () => {
+    try {
+      await signOut(auth);
+    } catch (error) {
+      console.error('Error signing out:', error);
+    }
+  };
+  
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
@@ -28,7 +47,7 @@ const SiteHeader = ({ history }) => {
     { label: "Favorites", path: "/movies/favorites" },
     { label: "Upcoming Movies", path: "/movies/upcoming" },
     { label: "Top Rated", path: "/movies/topRated" },
-    { label: "In Threatres", path: "/movies/playingNow"}
+    { label: "In Threatres", path: "/movies/playingNow"},
   ];
 
   const handleMenuSelect = (pageURL) => {
@@ -43,6 +62,15 @@ const SiteHeader = ({ history }) => {
     <>
       <AppBar position="fixed" color="secondary">
         <Toolbar>
+          { currentUser ? (
+            <>
+              <Typography variant="body1" sx={{ flexGrow: 1 }}>
+                  {currentUser.email}
+              </Typography>
+            </>
+          ) : (
+            null
+          )}
           <Typography variant="h4" sx={{ flexGrow: 1 }}>
             TMDB Client
           </Typography>
@@ -95,8 +123,17 @@ const SiteHeader = ({ history }) => {
                   >
                     {opt.label}
                   </Button>
-                ))}
+                ))} 
               </>
+            )}
+            { currentUser ? (
+              <Button color="inherit" onClick={handleSignOut}>
+                Sign Out
+              </Button>
+            ) : (
+              <Button color="inherit" onClick={handleSignIn}>
+                Sign In
+              </Button>
             )}
         </Toolbar>
       </AppBar>
