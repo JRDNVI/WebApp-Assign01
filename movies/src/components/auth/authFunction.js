@@ -6,6 +6,7 @@ const auth = getAuth();
     .then((userCredential) => {
       // Successfully signed up
       const user = userCredential.user;
+      console.log(user)
       return user;
     })
     .catch((error) => {

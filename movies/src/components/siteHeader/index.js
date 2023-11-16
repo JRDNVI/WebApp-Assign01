@@ -59,8 +59,11 @@ const SiteHeader = () => {
     setAnchorEl(event.currentTarget);
   };
 
+  if(!currentUser) return null;
+
   return (
     <>
+    
       <AppBar position="fixed" color="secondary">
         <Toolbar>
           { currentUser ? (
@@ -131,11 +134,8 @@ const SiteHeader = () => {
               <Button color="inherit" onClick={handleSignOut}>
                 Sign Out
               </Button>
-            ) : (
-              <Button color="inherit" onClick={handleSignIn}>
-                Sign In
-              </Button>
-            )}
+            ) : null 
+          }
         </Toolbar>
       </AppBar>
       <Offset />

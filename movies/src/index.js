@@ -66,7 +66,7 @@ const App = () => {
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
       <UserProvider>
-        <SiteHeader user={auth} />
+        <SiteHeader />
         <MoviesContextProvider>
         <Routes>
           <Route path="/movies/favorites" element={<FavoriteMoviesPage />} />
