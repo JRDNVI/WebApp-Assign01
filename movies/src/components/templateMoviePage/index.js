@@ -29,13 +29,13 @@ const TemplateMoviePage = ({ movie, children }) => {
       return <h1>{error || creditError}</h1>;
     }
   
-    const images = data.posters.slice(0, 1);
+    const images = data.posters[0];
     const reducedCast = credits.cast.splice(0, 16)
+    console.log(credits)
 
   return (
     <>
       <MovieHeader movie={movie} />
-
       <Grid container spacing={5} sx={{ padding: "15px" }}>
         <Grid item xs={3}>
           <div sx={{
@@ -43,17 +43,12 @@ const TemplateMoviePage = ({ movie, children }) => {
             flexWrap: "wrap",
             justifyContent: "space-around",
           }}>
-            <ImageList 
-                cols={1} >
-                {images.map((image) => (
-                    <ImageListItem key={image.file_path} cols={1} >
-                    <img
-                        src={`https://image.tmdb.org/t/p/w500/${image.file_path}`}
-                        alt={image.poster_path}
-                    />
-                    </ImageListItem>
-                ))}
-            </ImageList>
+            <ImageListItem key={images.file_path} cols={1} >
+              <img
+                src={`https://image.tmdb.org/t/p/w500/${images.file_path}`}
+                alt={images.poster_path}
+              />
+            </ImageListItem>
           </div>
         </Grid>
 

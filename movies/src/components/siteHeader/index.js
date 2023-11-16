@@ -49,6 +49,7 @@ const SiteHeader = () => {
     { label: "Upcoming Movies", path: "/movies/upcoming" },
     { label: "Top Rated", path: "/movies/topRated" },
     { label: "In Theatres", path: "/movies/playingNow"},
+    { label: "People", path: "/actors"}
   ];
 
   const handleMenuSelect = (pageURL) => {

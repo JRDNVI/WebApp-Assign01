@@ -1,6 +1,6 @@
 # Assignment 1 - ReactJS app.
 
-Name: [your name]
+Name: Jordon Coady
 
 ## Overview.
 
@@ -9,7 +9,7 @@ Name: [your name]
 ### Features.
 + Sorting movies by vote count or release date has been added.
 
-+ Added another filter option by vote average. If a mvoie is below the user 
++ Added another filter option by vote average. If a movie is below the user 
   specfied amount it will be removed from the list of movies.
 
 + Added firebase email and password authentication. 
@@ -17,6 +17,11 @@ Name: [your name]
   - There is a sign in and sign up option. 
   - The current user can be seen at the top left of the site header
 
++ Added pagination
+  - Changed API calls to take in a parameter for page number. Imported pagination,
+    created a handle for when the pagination component is clicked which returns a number i.e. page number.
+    Then the handle function sets the page the user wants and refetch is used to make a new API call with 
+    the updated page number.
 
 ## Setup requirements.
 npm install
@@ -27,17 +32,19 @@ Static Endpoints
 + Latest Movie - movie/latest
 + Popular Movies - movie/top_rated
 + Movies in Theatres - movie/now_playing
++ Get Popular Actors - person/popular
 
 Parameterised Endpoints
-+ Movie details - movie/:id
++ Movie Credits - movie/:id
 + Actor Details - person?query=name
 + Full Actor Profile & Credited Movies - person/:id&append_to_response=movie_credits
 
 ## Routing.
 + /movies/topRated - Displays top rated movies
 + /actor/:name - Displays an actors profile and movies they have been in.
-+ /movies/playingNow - Displays movies that are in threatres
-+ /movies/mustWatch - Shows must watch movies
++ /movies/playingNow - Displays movies that are in theatres.
++ /movies/mustWatch - List of must watched movies
++ /actors - List of popular actors
 
 ## Independent learning (If relevant).
 

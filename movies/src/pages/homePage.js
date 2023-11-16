@@ -6,7 +6,6 @@ import { useQuery } from 'react-query';
 import Spinner from '../components/spinner';
 import AddToFavoritesIcon from '../components/cardIcons/addToFavorites';
 import LatestTemplete from '../components/latestMovie';
-import UserContext from "../contexts/userContext";
 import { Pagination } from "@mui/material";
 
 

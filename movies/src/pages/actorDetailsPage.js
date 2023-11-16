@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams } from "react-router-dom"; // Import useParams to access URL parameters
+import { useParams } from "react-router-dom";
 import { getActorDetails } from "../api/tmdb-api";
 import { useQuery } from 'react-query';
 import { getFullActorProfile } from "../api/tmdb-api";
@@ -12,7 +12,7 @@ const ActorDetailsPage = () => {
   const apiName = nameParts.join("+");
 
   const { data, error, isLoading, isError } = useQuery(
-    ["actor", { id: apiName }], // Use 'name' as the parameter for the query
+    ["actor", { id: apiName }], 
     getActorDetails
   );
 
