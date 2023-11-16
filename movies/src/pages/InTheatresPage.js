@@ -1,11 +1,16 @@
-import React from "react";
+import React, {useState} from "react";
 import { useQuery } from 'react-query';
 import Spinner from '../components/spinner';
 import PageTemplate from "../components/templateMovieListPage";
 import { getNowPlayingMovies } from "../api/tmdb-api";
+import { Pagination } from "@mui/material";
 
 const InTheatresPage = () => {
-    const { data, error, isLoading, isError } = useQuery('Now Playing', getNowPlayingMovies )
+  const [currentPage, setCurrentPage] = useState(1);
+  const { data, error, isLoading, isError, refetch } = useQuery(
+    ['Now Playing', {page: currentPage}],
+    getNowPlayingMovies 
+  );
 
   if (isLoading) {
     return <Spinner />
@@ -14,15 +19,23 @@ const InTheatresPage = () => {
   if (isError) {
     return <h1>{error.message}</h1>
   }
+
+  const handleChange = (event, page) => {
+    setCurrentPage(page);
+    refetch({ page: currentPage })
+  }
   
   return (
+    <>
     <PageTemplate
-      title="Top Rated Movies"
+      title="In Theatres"
       movies={data.results}
       action={(movie) => {
         return null;
       }}
     />
+    <Pagination count={5} variant="outlined" color="secondary" onChange={handleChange} page={currentPage} />
+  </>
   );
 };
 

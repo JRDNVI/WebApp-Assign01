@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 const LatestMovie = ({ latest }) => {
   return (
     <>
-    <Typography variant="h4" sx={{ color: 'black', textAlign: 'center', paddingTop: "20px" }}>
+    <Typography variant="h4" sx={{ color: 'black', textAlign: 'center', paddingTop: "10px" }}>
       Latest Movie
     </Typography>
     <Card>
@@ -23,7 +23,6 @@ const LatestMovie = ({ latest }) => {
         <Typography variant="body2" color="text.secondary">
           Popularity: {latest.popularity}
         </Typography>
-        {/* You can add more information from the object as needed */}
       </CardContent>
     </Card>
     </>
