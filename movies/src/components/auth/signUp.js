@@ -15,10 +15,9 @@ const SignUp = () => {
       const user = await signUp(email, password);
       console.log('User signed up:', user);
       navigate('/');
-      // Redirect or perform other actions upon successful sign-up
     } catch (error) {
       console.error('Sign-up error:', error.message);
-      // Handle the error, display a message, etc.
+      alert(`Sign-in error: ${error.message}`);
     }
   };
 

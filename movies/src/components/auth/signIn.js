@@ -18,6 +18,7 @@ const SignIn = () => {
       navigate('/');
     } catch (error) {
       console.error('Sign-in error:', error.message);
+      alert(`Sign-in error: ${error.message}`);
     }
   };
 
