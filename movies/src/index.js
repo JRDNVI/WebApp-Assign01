@@ -19,9 +19,8 @@ import UserProvider from "./components/auth/UserProvider";
 import MustWatchMoviesPage from "./pages/mustWatchMoviesPage";
 import PopularActorPage from "./pages/popularActorPage";
 
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { getAuth } from 'firebase/auth';
 
 
 const queryClient = new QueryClient({
@@ -34,7 +33,7 @@ const queryClient = new QueryClient({
   },
 });
 
-// Your web app's Firebase configuration
+
 const firebaseConfig = {
   apiKey: "AIzaSyBmx7udH48OtH044h7tlFjgp_K2dL65B2U",
   authDomain: "web-app-940c1.firebaseapp.com",
@@ -45,20 +44,6 @@ const firebaseConfig = {
 };
 
 
-
-const checkAuthState = () => {
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      // User is signed in
-      console.log('User is signed in:', user);
-    } else {
-      console.log('No user is signed in.');
-    }
-  });
-};
-
-
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 

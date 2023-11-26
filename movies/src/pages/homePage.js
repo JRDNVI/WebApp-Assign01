@@ -17,7 +17,7 @@ const HomePage = (props) => {
     getMovies
   );
 
-  const { data: latestMovie, error: latestError, isLoading: latestIsLoading, isError: latestIsError  } = useQuery('latest', getLatestMovie )
+  const { data: latestMovie, error: latestError, isLoading: latestIsLoading, isError: latestIsError  } = useQuery('latest', getLatestMovie)
 
   if (isLoading || latestIsLoading) {
     return <Spinner />

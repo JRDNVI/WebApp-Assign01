@@ -3,8 +3,12 @@
 Name: Jordon Coady
 
 ## Overview.
+This repository is a React and Node.js application for a TMDB. It uses the TMDB API to get lists of movies/actors 
+and uses react to display them on different pages. Firebase email and password authenication has been incluced 
+in this project, as well as pagination. The app offers filtering and sorting options for the displayed movies.#
+This app also allows users to create different movie lists, favourites and must watch. 
 
-[A brief statement on the content of this repository.]
+Below is a detailed description of the capabilities of this app.
 
 ### Features.
 + Sorting movies by vote count or release date has been added.
@@ -28,7 +32,7 @@ Name: Jordon Coady
 
     - userProvider.js
       This file is responsible for setting the context of the current user and allowing every other component access to the user.
-      The userProvider is wrapped around the routes in index.js. If there is no user signed in it will navigate to the authOtionPage.
+      The userProvider is wrapped around the routes in index.js. If there is no user signed in it will navigate to the authOptionPage.
   
   - Added authOptionPage which displays the signIn and signUp forms.
   - The site header has been changed to check to see if there is a current user if there isn't it won't render the 
@@ -43,8 +47,8 @@ Name: Jordon Coady
   - Pagination works on the homepage, Poeple Page, Upcoming Page, Top Rated page and In Theathres Page.
 
 ## Setup requirements.
-npm install
-npm install firebase
+- npm install
+- npm install firebase
 
 ## API endpoints.
 Static Endpoints
@@ -66,7 +70,20 @@ Parameterised Endpoints
 + /actors - List of popular actors
 
 ## Independent learning (If relevant).
+Firebase
++ Code for AuthFunction.js file createUserWithEmailAndPassword & signInWithEmailAndPassword was given at the below link.
+  - https://firebase.google.com/docs/auth/web/password-auth
 
-Itemize the technologies/techniques you researched independently and adopted in your project, 
-i.e. aspects not covered in the lectures/labs. Include the source code filenames that illustrate these 
-(we do not require code excerpts) and provide references to the online resources that helped you (articles/blogs).
++ The code for the firebase configurartion was given in my project settings in the firebase console.
+
++ The userProvider, sign-in, sign-up was based off the below video.
+  - https://youtu.be/Vv_Oi7zPPTw
+
+Pagination 
++ I learned about refetch from the below link. Refetch allowed me to call the query again with the updated page number. 
+  - https://tanstack.com/query/v4/docs/react/reference/useQuery
+
++ Found the pagination compoenent and learned about the different options it takes in from the below link.
+  - https://mui.com/material-ui/react-pagination/
+
++ Pagination was implemented in homePage.js, inTheatres.js, popularActorPage.js, topRatedMoviePage.js, and upComingMoviePage.js

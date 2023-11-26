@@ -93,7 +93,7 @@ export default function FilterMoviesCard(props) {
             labelId="sort-label"
             id="sort-select"
             value={props.sortOption}
-            onChange={handleSortChange}
+            onChange={(e) => props.onUserInput("sort", e.target.value)}
           >
             <MenuItem value="none">None</MenuItem>
             <MenuItem value="vote_average">Vote Average</MenuItem>

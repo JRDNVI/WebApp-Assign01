@@ -11,10 +11,7 @@ const UserProvider = ({ children }) => {
     const auth = getAuth(); 
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
-        setCurrentUser({
-          uid: user.uid,
-          email: user.email,
-        });
+        setCurrentUser(user);
       } else {
         setCurrentUser(null);
         navigate('/authPage/')

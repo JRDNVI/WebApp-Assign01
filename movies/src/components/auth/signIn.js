@@ -1,4 +1,3 @@
-// SignIn.js
 import React, { useState } from 'react';
 import { signIn } from './authFunction';
 import { useNavigate } from 'react-router-dom';
